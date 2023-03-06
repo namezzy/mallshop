@@ -1,32 +1,31 @@
 <template>
   <div id="home">
     <nav-bar class="home-nav">
-      <div slot="center">购物街</div>
+      <div slot="center">蘑菇街</div>
     </nav-bar>
-    <swiper>
-      <swiper-item v-for="item in banners" :key="item.id">
-        <a :href="item.link">
-          <img :src="item.image" alt="">
-        </a>
-      </swiper-item>
-    </swiper>
+    <home-swiper :banners="banners"/>
+    <recommend-view :recommends="recommends"/>
   </div>
 </template>
 
 <script>
 
 import NavBar from 'components/common/navbar/NavBar';
+import HomeSwiper from "./childComps/HomeSwiper";
+import RecommendView from "./childComps/RecommendView";
 import {getHomeMultidata} from "network/home";
+
+
 // import {Swiper} from "components/common/swiper";
 // import {SwiperItem} from "components/common/swiper";
-import {Swiper, SwiperItem} from 'components/common/swiper'
+// import {Swiper, SwiperItem} from 'components/common/swiper'
 
 export default {
   name: "Home",
   components: {
     NavBar,
-    Swiper,
-    SwiperItem
+    HomeSwiper,
+    RecommendView
   },
   data() {
     // 把请求的数据保存
