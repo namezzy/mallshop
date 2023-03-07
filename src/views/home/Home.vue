@@ -6,7 +6,6 @@
     <home-swiper :banners="banners"/>
     <recommend-view :recommends="recommends"/>
     <tab-control class="tab-control" :titles="['流行','新款','精选']"/>
-
     <ul>
       <li>列表1</li>
       <li>列表2</li>
@@ -82,7 +81,7 @@ import FeatureView from "./childComps/FeatureView";
 import NavBar from 'components/common/navbar/NavBar';
 import TabControl from "components/content/tabControl/TabControl";
 
-import {getHomeMultidata} from "network/home";
+import {getHomeMultidata, getHomeGoods} from "network/home";
 
 
 // import {Swiper} from "components/common/swiper";
@@ -102,16 +101,39 @@ export default {
     // 把请求的数据保存
     return {
       banners: [],
-      recommends: []
+      recommends: [],
+      goods: {
+        'pop': {page: 0, list: []},
+        'news': {page: 0, list: []},
+        'sell': {page: 0, list: []}
+      }
     }
   },
   created() {
     // 1. 请求多个数据
-    getHomeMultidata().then(res => {
-      console.log(res);
-      this.banners = res.data.banner.list;
-      this.recommends = res.data.recommend.list;
-    })
+    this.getHomeMultidata()
+
+    // 2.请求商品数据
+    this.getHomeGoods('pop')
+    this.getHomeGoods('new')
+    this.getHomeGoods('sell')
+  },
+  methods: {
+    getHomeMultidata() {
+      getHomeMultidata().then(res => {
+        console.log(res);
+        this.banners = res.data.banner.list;
+        this.recommends = res.data.recommend.list;
+      })
+
+    },
+
+    getHomeGoods(type) {
+      const  page = this.goods[type].page + 1
+      getHomeGoods(type, page).then(res => {
+        console.log(res);
+      })
+    }
   }
 }
 </script>
