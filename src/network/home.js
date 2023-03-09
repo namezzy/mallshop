@@ -6,12 +6,20 @@ export function getHomeMultidata() {
   })
 }
 
-export function getHomeGoods(type,page) {
+export function getHomeGoods(type, page) {
   return request({
     url: '/home/data',
-    params:{
+    params: {
       type,
       page
     }
   })
 }
+
+
+let totalNums = []
+
+const nums1 = [20, 11, 222]
+const num2 = [111, 22, 333]
+
+totalNums.push(...nums1)
