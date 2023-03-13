@@ -416,6 +416,7 @@ export default {
       scroll: null
     }
   },
+  // 组件创建之后调用
   mounted() {
     // this.scroll = new BScroll('.wrapper', {})
     this.scroll = new BScroll(document.querySelector('.wrapper',{
