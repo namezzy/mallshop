@@ -419,9 +419,18 @@ export default {
   // 组件创建之后调用
   mounted() {
     // this.scroll = new BScroll('.wrapper', {})
-    this.scroll = new BScroll(document.querySelector('.wrapper',{
+    this.scroll = new BScroll(document.querySelector('.wrapper'), {
+      probeType: 3,
+      pullUpLoad: true
+    })
+    // this.scroll.on('scroll', (position) => {
+    //   console.log(position);
+    // })
 
-    }))
+    this.scroll.on('pullingUp', () =>{
+      console.log('上拉加载更多');
+    })
+
   }
 }
 </script>

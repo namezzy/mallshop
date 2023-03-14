@@ -23,7 +23,7 @@ export default {
 .nav-bar {
   display: flex;
   /*上下居中*/
-  line-height: 44px;
+  line-height: 45px;
   /*height: 40px;*/
   /*文字居中对齐*/
   text-align: center;

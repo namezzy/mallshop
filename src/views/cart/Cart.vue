@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h2>我爱王东晓和小米椒</h2>
+  <h2>小米椒~</h2>
 </div>
 </template>
 
