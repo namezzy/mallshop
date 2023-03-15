@@ -13,6 +13,7 @@
       <!--<goods-list :goods="goods[currentType].list"/>-->
       <goods-list :goods="showGoods"/>
     </scroll>
+
     <ul>
       <li>商品列表1</li>
       <li>商品列表2</li>
