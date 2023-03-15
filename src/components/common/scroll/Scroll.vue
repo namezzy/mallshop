@@ -18,9 +18,18 @@ export default {
     }
   },
   mounted() {
-    this.scroll = new BScroll(this.$refs.wrapper, {
-
-    })
+    // setTimeout(() => {
+    //   this.scroll = new BScroll(this.$refs.wrapper.refresh, {
+    //     probeType: 3,
+    //     observeDOM: true,
+    //     click: true
+    //   }, 2000)
+    // })
+    this.scroll = new BScroll(this.$refs.wrapper.refresh, {
+      probeType: 3,
+      observeDOM: true,
+      click: true
+    } )
   }
 }
 </script>
