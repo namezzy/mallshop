@@ -284,7 +284,8 @@ export default {
 
 <style scoped>
 #home {
-  padding-top: 44px;
+  /*padding-top: 44px;*/
+  height: 100vh;
 }
 
 .home-nav {
@@ -309,8 +310,12 @@ export default {
 }
 
 .content {
-  height: 300px;
+  height: calc(100% - 98px);
   overflow: hidden;
 
+}
+
+.wrapper{
+  height: 100%;
 }
 </style>
