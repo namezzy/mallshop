@@ -25,7 +25,7 @@ export default {
     //     click: true
     //   }, 2000)
     // })
-    this.scroll = new BScroll(this.$refs.wrapper.refresh, {
+    this.scroll = new BScroll(this.$refs.wrapper, {
       probeType: 3,
       observeDOM: true,
       click: true
