@@ -1,13 +1,12 @@
 <template>
-<div class="back-top">
+<div class="back-top" >
   <img src="~assets/img/common/top.png" alt="">
 </div>
 </template>
+export default {
 
 <script>
-export default {
   name: "BackTop"
-}
 </script>
 
 <style scoped>

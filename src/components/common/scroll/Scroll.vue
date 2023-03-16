@@ -29,7 +29,12 @@ export default {
       probeType: 3,
       observeDOM: true,
       click: true
-    } )
+    })
+  },
+  methods: {
+    scrollTo(x, y, time = 300) {
+      this.scroll.scrollTo(x, y, time)
+    }
   }
 }
 </script>
