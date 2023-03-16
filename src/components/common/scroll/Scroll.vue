@@ -12,24 +12,38 @@ import BScroll from "better-scroll";
 
 export default {
   name: "Scroll",
+  props: {
+    probeType: {
+      type: Number,
+      default: 0
+    }
+  },
   data() {
     return {
       scroll: null
     }
   },
   mounted() {
+    // 1. 创建BScroll对象
     // setTimeout(() => {
-    //   this.scroll = new BScroll(this.$refs.wrapper.refresh, {
-    //     probeType: 3,
-    //     observeDOM: true,
-    //     click: true
-    //   }, 2000)
-    // })
+    //   this.scroll = new BScroll(this.$refs.wrapper, {
+    //     click: true,
+    //     probeType: this.probeType,
+    //     // observeDOM: true
+    //   })
+    // }, 1000)
     this.scroll = new BScroll(this.$refs.wrapper, {
-      probeType: 3,
-      observeDOM: true,
+      probeType: this.probeType,
+      //observeDOM: true,
       click: true
     })
+
+    // 2. 监听滚动的位置
+    this.scroll.on('scroll', (position) => {
+      // console.log(position);
+      this.$emit('scroll', position)
+    })
+
   },
   methods: {
     scrollTo(x, y, time = 300) {

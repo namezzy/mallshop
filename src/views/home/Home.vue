@@ -3,7 +3,7 @@
     <nav-bar class="home-nav">
       <div slot="center">蘑菇街</div>
     </nav-bar>
-    <scroll class="content" ref="scroll">
+    <scroll class="content" ref="scroll" :probeType="3" @scroll="contentScroll">
       <home-swiper :banners="banners"/>
       <recommend-view :recommends="recommends"/>
       <tab-control class="tab-control"
@@ -13,7 +13,7 @@
       <!--<goods-list :goods="goods[currentType].list"/>-->
       <goods-list :goods="showGoods"/>
     </scroll>
-    <back-top @click.native="backClick"/>
+    <back-top @click.native="backClick" v-show="isShowBackTop"/>
   </div>
 </template>
 
@@ -65,7 +65,8 @@ export default {
         'new': {page: 0, list: []},
         'sell': {page: 0, list: []}
       },
-      currentType: 'pop'
+      currentType: 'pop',
+      isShowBackTop: false
     }
   },
   created() {
@@ -99,6 +100,10 @@ export default {
       // this.$refs.scroll.scroll.scrollTo(0, 0,500);
       this.$refs.scroll.scrollTo(0, 0);
 
+    },
+    contentScroll(position) {
+      // position.y < 1000
+      this.isShowBackTop =  -(position.y) > 1000
     },
 
     /**
@@ -153,23 +158,23 @@ export default {
 }
 
 
-.content {
-  overflow: hidden;
-
-  position: absolute;
-  top: 44px;
-  bottom: 49px;
-  left: 0;
-  right: 0;
-
-}
-
 /*.content {*/
-/*  height: calc(100% - 49px);*/
 /*  overflow: hidden;*/
-/*  margin-top: 44px;*/
+
+/*  position: absolute;*/
+/*  top: 44px;*/
+/*  bottom: 49px;*/
+/*  left: 0;*/
+/*  right: 0;*/
 
 /*}*/
+
+.content {
+  height: calc(100% - 49px);
+  overflow: hidden;
+  margin-top: 44px;
+
+}
 
 
 /*不设置的话 tab-control不会显示*/
