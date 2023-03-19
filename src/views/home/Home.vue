@@ -7,8 +7,7 @@
             ref="scroll"
             :probeType="3"
             @scroll="contentScroll"
-            :pull-up-load="true"
-            @pullingUp="loadMore">
+            :pull-up-load="true">
       <home-swiper :banners="banners"/>
       <recommend-view :recommends="recommends"/>
       <tab-control class="tab-control"
@@ -82,6 +81,14 @@ export default {
     this.getHomeGoods('pop')
     this.getHomeGoods('new')
     this.getHomeGoods('sell')
+
+    // 3. 监听item中图片加载完成
+
+    this.$bus.$on('itemImageLoad', ()=>{
+      //console.log(this.$bus);
+      this.$refs.scroll.refresh();
+    })
+
   },
   methods: {
 
@@ -110,9 +117,9 @@ export default {
       // position.y < 1000
       this.isShowBackTop = -(position.y) > 1000
     },
-    loadMore() {
-      this.getHomeGoods(this.currentType)
-    },
+    // loadMore() {
+    //   this.getHomeGoods(this.currentType)
+    // },
 
     /**
      * 网络请求相关的方法
@@ -133,7 +140,7 @@ export default {
         this.goods[type].list.push(...res.data.list)
         this.goods[type].page += 1
 
-        this.$refs.scroll.finishPullUp()
+
 
       })
     }

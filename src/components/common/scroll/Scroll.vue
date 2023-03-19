@@ -17,10 +17,10 @@ export default {
       type: Number,
       default: 0
     },
-    pullUpLoad: {
-      type: Boolean,
-      default: false
-    }
+    // pullUpLoad: {
+    //   type: Boolean,
+    //   default: false
+    // }
   },
   data() {
     return {
@@ -48,11 +48,15 @@ export default {
       // console.log(position);
       this.$emit('scroll', position)
     })
+    // 打印scroll属性
+    console.log(this.scroll);
+    this.scroll.refresh();
 
-    // 3. 监听上拉事件
-    this.scroll.on('pullingUp', ()=>{
-      this.$emit('pullingUp')
-    })
+
+    // // 3. 监听上拉事件
+    // this.scroll.on('pullingUp', ()=>{
+    //   this.$emit('pullingUp')
+    // })
 
 
   },
@@ -62,6 +66,9 @@ export default {
     },
     finishPullUp() {
       this.scroll.finishPullUp()
+    },
+    refresh() {
+      this.scroll.refresh()
     }
   }
 }
