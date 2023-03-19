@@ -7,7 +7,6 @@ export function request(config) {
     //baseURL: 'http://106.55.22.225:7878/',
     baseURL: 'http://123.207.32.32:7888/api/hy66/',
     timeout: 5000,
-    withCredentials: true
   })
 
   // 2. axios的拦截器
