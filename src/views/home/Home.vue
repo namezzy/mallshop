@@ -3,7 +3,12 @@
     <nav-bar class="home-nav">
       <div slot="center">蘑菇街</div>
     </nav-bar>
-    <scroll class="content" ref="scroll" :probeType="3" @scroll="contentScroll">
+    <scroll class="content"
+            ref="scroll"
+            :probeType="3"
+            @scroll="contentScroll"
+            :pull-up-load="true"
+            @pullingUp="loadMore">
       <home-swiper :banners="banners"/>
       <recommend-view :recommends="recommends"/>
       <tab-control class="tab-control"
@@ -103,7 +108,10 @@ export default {
     },
     contentScroll(position) {
       // position.y < 1000
-      this.isShowBackTop =  -(position.y) > 1000
+      this.isShowBackTop = -(position.y) > 1000
+    },
+    loadMore() {
+      this.getHomeGoods(this.currentType)
     },
 
     /**
@@ -124,6 +132,9 @@ export default {
         // console.log(res);
         this.goods[type].list.push(...res.data.list)
         this.goods[type].page += 1
+
+        this.$refs.scroll.finishPullUp()
+
       })
     }
   }
