@@ -82,19 +82,37 @@ export default {
     this.getHomeGoods('new')
     this.getHomeGoods('sell')
 
+
+
+  },
+
+  mounted() {
+
     // 3. 监听item中图片加载完成
 
     this.$bus.$on('itemImageLoad', ()=>{
       //console.log(this.$bus);
-      this.$refs.scroll.refresh();
+      // 解决refresh函数找不到的bug
+      console.log('000000000000000');
+      this.$refs.scroll && this.$refs.scroll.refresh();
     })
-
   },
   methods: {
 
     /**
      * 事件监听相关的方法
      */
+
+    debounce(func, delay){
+      let  timer = null
+      return  function (...args) {
+        if (timer) clearTimeout(timer)
+
+        timer = setTimeout(()=>{
+          func.apply(this,args)
+        },delay)
+      }
+    },
     tabClick(index) {
       switch (index) {
         case 0:
