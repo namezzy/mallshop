@@ -77,8 +77,21 @@ export default {
       currentType: 'pop',
       isShowBackTop: false,
       tabOffsetTop: 0,
-      isTabFixed: false
+      isTabFixed: false,
+      savePos: 0
     }
+  },
+  destroyed() {
+    console.log('home destroyed');
+  },
+  activated() {
+
+    this.$refs.scroll.scrollTo(0, this.savePos, 0)
+    this.$refs.scroll.refresh()
+  },
+  deactivated() {
+    // 获取离开时候的位置
+    this.savePos = this.$refs.scroll.getScrollPos()
   },
   created() {
     // 1. 请求多个数据

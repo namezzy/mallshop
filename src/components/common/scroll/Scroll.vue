@@ -60,7 +60,7 @@ export default {
     }
 
     // 打印scroll属性
-    console.log(this.scroll);
+    // console.log(this.scroll);
     this.scroll.refresh();
 
 
@@ -80,6 +80,10 @@ export default {
     },
     refresh() {
       this.scroll && this.scroll.scrollTo && this.scroll.refresh()
+    },
+    // 获取滚动的位置
+    getScrollPos() {
+      return this.scroll ? this.scroll.y : 0
     }
   }
 }
