@@ -1,10 +1,12 @@
 <template>
   <div id="detail">
-    <detail-nav-bar/>
-    <detail-swiper :top-images="topImages">
-    </detail-swiper>
-    <detail-base-info :goods="goods"/>
-    <detail-shop-info :shop="shop"/>
+    <detail-nav-bar class="detail-nav"/>
+    <scroll class="content">
+      <detail-swiper :top-images="topImages">
+      </detail-swiper>
+      <detail-base-info :goods="goods"/>
+      <detail-shop-info :shop="shop"/>
+    </scroll>
   </div>
 </template>
 
@@ -15,6 +17,8 @@ import DetailSwiper from "./childComps/DetailSwiper";
 import DetailBaseInfo from "./childComps/DetailBaseInfo";
 import DetailShopInfo from "./childComps/DetailShopInfo";
 
+import Scroll from "components/common/scroll/Scroll.vue";
+
 import {getDetail, Goods, Shop} from "network/detail";
 
 export default {
@@ -23,7 +27,8 @@ export default {
     DetailNavBar,
     DetailSwiper,
     DetailBaseInfo,
-    DetailShopInfo
+    DetailShopInfo,
+    Scroll
   },
   data() {
     return {
@@ -57,5 +62,20 @@ export default {
 
 <style scoped>
 
+#detail {
+  position: relative;
+  z-index: 9;
+  background-color: #fff;
+  height: 100vh;
+}
 
+.content {
+  height: calc(100% - 44px);
+}
+
+.detail-nav {
+  position: relative;
+  z-index: 9;
+  background-color: #fff;
+}
 </style>
