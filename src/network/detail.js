@@ -2,8 +2,7 @@ import {request} from "./request";
 
 export function getDetail(iid) {
   return request({
-    url: '/detail',
-    params: {
+    url: '/detail', params: {
       iid
     }
   })
@@ -36,4 +35,12 @@ export class Shop {
   }
 }
 
+export class GoodsParam {
+  constructor(info, rule) {
+    // 注意: images可能没有值(某些商品有值， 某些没有值)
+    this.image = info.images ? info.images[0] : '';
+    this.infos = info.set;
+    this.sizes = rule.tables;
+  }
+}
 
