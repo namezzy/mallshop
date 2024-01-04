@@ -50,7 +50,7 @@ export default {
 }
 
 .goods-info {
-  font-size: 12px;
+  font-size: 13px;
   position: absolute;
   bottom: 5px;
   left: 0;
